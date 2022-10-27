@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index weight</title>
+    <style type="text/css">
+        body
+        {
+            background-color: rgb(113, 177, 113);
+        }
+        .cont
+        {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            width: 450px;
+            height: 300px;
+            background-color: darkgrey;
+            border-radius: 20px;
+            border: 15px solid #7f847f;
+            color:beige;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="cont">
+    Введите рост: <input type = "number" id="rost" value =  "Введите рост"><br> 
+    Введите вес: <input type = "number" id="wes" value =  "Введите вес"> <br> 
+    Ваш индекс массы тела: <output id="result"></output><br> 
+   <button type="sub" id="sub" onclick="index()">Рассчитай, если сможешь</button>
+</div>
+<script>  
+    function index()
+    {  
+        let weight = parseInt(document.getElementById("wes").value);
+        let height = parseInt(document.getElementById("rost").value);
+        let f = true;
+
+        if(isNaN(weight) && isNaN(height))
+        {
+            alert("Надо заполнить поля, злодей");
+            f = false;          
+        }
+        else if(isNaN(weight) || isNaN(height))
+        {
+            if(isNaN(weight))
+            {
+                alert("Надо заполнить поле веса, злодей");
+            }
+            if(isNaN(height))
+            {
+                alert("Надо заполнить поле роста, злодей");
+            }
+            f = false;
+        }
+        if(weight < 0 || height < 0)
+        {
+            alert("Нельзя пользоваться отрицательными числами, хитрюша");
+            f = false;
+        }
+        if(f)
+        {
+            let ind = (weight / Math.pow((height/100),2)).toFixed(1).toString(); 
+            document.getElementById('result').value = ind;
+        }
+        else
+        {
+            document.getElementById("wes").value = "";
+            document.getElementById("rost").value = "";
+        }
+    }
+</script>
+</body>
+</html>
